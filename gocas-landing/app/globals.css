@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gocas-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+:root {
+  --bg-100: #f7f1e3;
+  --bg-200: #ede4d3;
+  --bg-300: #e1d4ba;
+  --ink: #3d4a2a;
+  --ink-soft: #6b7553;
+  --ink-mute: #a4b18b;
+  --accent: #d97a3c;
+  --accent-d: #b85829;
+  --rule: #cdbfa3;
+  --rule-dark: #4a5832;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  background: var(--bg-200);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+* { border-radius: 0 !important; }
+
+a { color: inherit; }
+
+input:focus, textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(217, 122, 60, 0.18);
+}
+
+/* Service cards hover (home) */
+.gocas-svc-grid > a:hover {
+  background: var(--bg-200) !important;
+}
+
+/* Responsive: < 900px */
+@media (max-width: 900px) {
+  .gocas-nav {
+    padding: 18px 24px !important;
+  }
+  .gocas-nav-links,
+  .gocas-nav-cta {
+    display: none !important;
+  }
+  .gocas-mobile-toggle {
+    display: block !important;
+  }
+
+  .gocas-hero {
+    padding: 48px 24px 40px !important;
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .gocas-hero-title {
+    font-size: 52px !important;
+  }
+  .gocas-hero-ctas {
+    flex-wrap: wrap;
+  }
+
+  .gocas-svc-header,
+  .gocas-equipo-header,
+  .gocas-cta-grid,
+  .gocas-faq-row {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .gocas-section-title {
+    font-size: 34px !important;
+  }
+  .gocas-cta-title {
+    font-size: 40px !important;
+  }
+
+  .gocas-svc-grid,
+  .gocas-pkg-grid,
+  .gocas-casos-grid,
+  .gocas-equipo-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .gocas-proceso-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .gocas-form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Section paddings */
+  section {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .gocas-proceso-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .gocas-hero-title {
+    font-size: 42px !important;
+  }
+}

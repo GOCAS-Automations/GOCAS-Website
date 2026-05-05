@@ -1,0 +1,108 @@
+/* ─────────────────────────────────────────────────────────────
+   GOCAS Automations · Design Tokens
+   Listos para copiar al :root de tu proyecto.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Backgrounds — cálidos */
+  --bg-100: #f7f1e3;   /* bone */
+  --bg-200: #ede4d3;   /* sand */
+  --bg-300: #e1d4ba;   /* sand-deep */
+
+  /* Ink — oliva profundo */
+  --ink:       #3d4a2a;
+  --ink-soft:  #6b7553;
+  --ink-mute:  #a4b18b;
+
+  /* Accent — ámbar quemado */
+  --accent:    #d97a3c;
+  --accent-d:  #b85829;
+
+  /* Lines */
+  --rule:      #cdbfa3;
+  --rule-dark: #4a5832;
+
+  /* Type families */
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Type scale */
+  --t-display-xl: 78px;
+  --t-display-l:  42px;
+  --t-display-m:  30px;
+  --t-subtitle:   22px;
+  --t-body-l:     17px;
+  --t-body:       14.5px;
+  --t-mono-k:     11px;
+  --t-mono-s:     10px;
+
+  /* Spacing scale (4px base, but bauhaus-style we use 8/16/24/32/48/56/64/72) */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-5: 48px; --sp-6: 56px; --sp-7: 64px; --sp-8: 72px;
+
+  /* No border-radius — la marca es bauhaus, todo es 0. */
+  --radius: 0;
+
+  /* Tracking */
+  --track-tight:   -0.04em;   /* display xl */
+  --track-display: -0.025em;  /* display medio */
+  --track-sub:     -0.015em;  /* subtítulos */
+  --track-mono-k:  0.18em;    /* kicker mono */
+  --track-mono-s:  0.1em;     /* labels mono */
+  --track-tag:     0.24em;    /* "automations" del logo */
+}
+
+/* Base reset suave */
+body {
+  background: var(--bg-200);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utilities */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono-k);
+  letter-spacing: var(--track-mono-k);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.display-xl {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--t-display-xl);
+  letter-spacing: var(--track-tight);
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.display-l {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--t-display-l);
+  letter-spacing: var(--track-display);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background: var(--ink); color: var(--bg-100);
+  padding: 16px 26px; border: none; border-radius: 0;
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;
+  cursor: pointer; transition: background .15s;
+}
+.btn-primary:hover { background: #2d3820; }
+
+.btn-amber {
+  background: var(--accent); color: var(--ink);
+  padding: 16px 26px; border: none; border-radius: 0;
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;
+  cursor: pointer; transition: background .15s, color .15s;
+}
+.btn-amber:hover { background: var(--accent-d); color: #fff; }
