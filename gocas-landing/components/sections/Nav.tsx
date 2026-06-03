@@ -75,7 +75,7 @@ export default function Nav() {
       }}
     >
       <Link href="/" aria-label="Inicio" style={{ display: 'inline-flex' }}>
-        <Logo size={26} />
+        <Logo size={34} />
       </Link>
       <div
         className="gocas-nav-links"

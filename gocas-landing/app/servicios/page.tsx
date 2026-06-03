@@ -12,7 +12,7 @@ import {
   CATEGORY_LABEL,
   CATEGORY_ORDER,
   formatDuration,
-  formatUsd,
+  formatPackagePrice,
 } from '@/lib/format';
 import type { ServiceCategory, ServicePackage } from '@/lib/types';
 
@@ -95,7 +95,7 @@ function PackageCard({ pkg, waNumber }: { pkg: ServicePackage; waNumber: string 
             whiteSpace: 'nowrap',
           }}
         >
-          [ {pkg.is_recurring ? formatUsd(pkg.base_price_usd) + '/mes' : 'desde ' + formatUsd(pkg.base_price_usd)} ]
+          [ {pkg.is_recurring ? formatPackagePrice(pkg.base_price_usd, pkg.category) + '/mes' : 'desde ' + formatPackagePrice(pkg.base_price_usd, pkg.category)} ]
         </span>
       </header>
       {pkg.description && (
@@ -257,6 +257,26 @@ function CategoryBlock({
           <PackageCard key={p.id} pkg={p} waNumber={waNumber} />
         ))}
       </div>
+
+      {category === 'maintenance' && (
+        <div
+          style={{
+            marginTop: 20,
+            padding: '18px 20px',
+            background: G.sand,
+            borderLeft: `3px solid ${G.amber}`,
+            fontSize: 13,
+            color: G.oliveSoft,
+            lineHeight: 1.6,
+            maxWidth: 820,
+          }}
+        >
+          <strong style={{ color: G.olive }}>Todos los planes incluyen soporte por WhatsApp y correo.</strong>{' '}
+          Los costos pueden variar según el proyecto. No incluyen el presupuesto de marketing asociado
+          al proyecto (si se contrató ese servicio). Las mejoras incluidas se acuerdan antes de la
+          entrega del proyecto.
+        </div>
+      )}
     </section>
   );
 }
@@ -393,6 +413,7 @@ export default async function ServiciosPage() {
           />
         ))}
 
+        <div style={{ height: 72 }} aria-hidden="true" />
       </div>
 
       <Footer background={G.sand} />

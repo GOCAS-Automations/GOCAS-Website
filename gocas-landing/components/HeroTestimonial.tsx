@@ -49,7 +49,7 @@ export default function HeroTestimonial() {
 
   return (
     <aside style={{ background: G.olive, color: G.bone, padding: 32, position: 'relative' }}>
-      <Logo size={28} dark />
+      <Logo size={44} dark monogram />
       <div
         key={i}
         style={{

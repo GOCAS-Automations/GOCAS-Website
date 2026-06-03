@@ -25,7 +25,7 @@ export default function HeroHighlight({ word }: { word: string }) {
   const [i, setI] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setI((n) => (n + 1) % VARIANTS.length), 5000);
+    const id = setInterval(() => setI((n) => (n + 1) % VARIANTS.length), 2600);
     return () => clearInterval(id);
   }, []);
 
@@ -42,7 +42,7 @@ export default function HeroHighlight({ word }: { word: string }) {
         fontFamily: v.fontFamily,
         fontStyle: v.fontStyle ?? 'normal',
         textDecoration: v.textDecoration ?? 'none',
-        transition: 'background .45s ease, color .45s ease',
+        transition: 'background .7s ease-in-out, color .7s ease-in-out, text-decoration-color .7s ease-in-out',
       }}
     >
       {word}

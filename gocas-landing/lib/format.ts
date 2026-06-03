@@ -51,6 +51,20 @@ export function formatUsd(amount: number): string {
   }).format(amount);
 }
 
+// Mantenimiento se cobra en COP. El monto se guarda en base_price_usd (entero en pesos).
+export function formatCop(amount: number): string {
+  return new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    maximumFractionDigits: 0,
+  }).format(amount || 0);
+}
+
+/** Precio de un paquete: COP para mantenimiento, USD para el resto. */
+export function formatPackagePrice(amount: number, category: ServiceCategory): string {
+  return category === 'maintenance' ? formatCop(amount) : formatUsd(amount);
+}
+
 export function formatDuration(days: number | null): string {
   if (!days || days <= 0) return 'A definir';
   if (days === 1) return '1 día';

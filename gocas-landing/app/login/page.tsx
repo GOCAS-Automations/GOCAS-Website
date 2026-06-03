@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import Logo from '@/components/Logo';
+import Nav from '@/components/sections/Nav';
 import { G } from '@/lib/tokens';
 import LoginForm from './LoginForm';
 
@@ -12,23 +11,21 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        background: G.sand,
-        color: G.olive,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 24,
-      }}
-    >
-      <div style={{ width: '100%', maxWidth: 380 }}>
-        <Link href="/" aria-label="Inicio" style={{ display: 'inline-flex', marginBottom: 28 }}>
-          <Logo size={26} />
-        </Link>
-
-        <div
+    <>
+      <Nav />
+      <main
+        style={{
+          minHeight: 'calc(100vh - 80px)',
+          background: G.sand,
+          color: G.olive,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 24,
+        }}
+      >
+        <div style={{ width: '100%', maxWidth: 380 }}>
+          <div
           style={{
             fontFamily: '"JetBrains Mono", monospace',
             fontSize: 11,
@@ -70,7 +67,8 @@ export default function LoginPage() {
         >
           Acceso solo para el equipo GOCAS. ¿Sin cuenta? Pídele a un socio que te cree una.
         </p>
-      </div>
-    </main>
+        </div>
+      </main>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SvcIcon, { type IconName } from '@/components/SvcIcon';
 import { getSupabaseAdmin } from '@/lib/supabase';
-import { formatUsd } from '@/lib/format';
+import { formatPackagePrice } from '@/lib/format';
 import { G } from '@/lib/tokens';
 import type { ServiceCategory } from '@/lib/types';
 
@@ -188,7 +188,7 @@ export default async function Servicios() {
                     }}
                   >
                     {aggregate.count} paquete{aggregate.count > 1 ? 's' : ''}
-                    {aggregate.minPrice > 0 && ` · desde ${formatUsd(aggregate.minPrice)}`} →
+                    {aggregate.minPrice > 0 && ` · desde ${formatPackagePrice(aggregate.minPrice, s.categories[0])}`} →
                   </div>
                 )}
               </div>

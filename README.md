@@ -93,7 +93,14 @@ El sitio usa dos cosas de Supabase:
 
 3. **`team_members` + `project_assignments`** — equipo (socios/empleados ligados al login) y asignación de roles por proyecto con su % de reparto. Aplica la migración [`0002_team_projects_profit.sql`](gocas-landing/supabase/migrations/0002_team_projects_profit.sql).
 
-> Nota: las tablas `leads`, `team_members` y `project_assignments` se agregaron vía migración y **no** están en el conteo original de 18 tablas; el documento `02_…` ya incluye una sección de extensiones (§11).
+4. **`cases` + `site_content`** — contenido editable del sitio (proyectos realizados y textos del hero/contacto). Migración [`0003`](gocas-landing/supabase/migrations/0003_site_content.sql).
+5. **Planes de mantenimiento** — precios en COP + soporte y SLA. Migración [`0004`](gocas-landing/supabase/migrations/0004_maintenance_plans.sql).
+
+> Aplica las migraciones **en orden** (`0001` → `0004`) en el SQL editor de Supabase; todas son idempotentes.
+>
+> Nota: `leads`, `team_members`, `project_assignments`, `cases` y `site_content` se agregaron vía migración y **no** están en el conteo original de 18 tablas; el documento `02_…` incluye una sección de extensiones (§11).
+
+Para probar el sitio manualmente y ver qué falta: [TESTING.md](TESTING.md).
 
 ---
 

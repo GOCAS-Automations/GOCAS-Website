@@ -27,7 +27,7 @@ export default function Footer({ background = G.amber }: { background?: string }
           color: G.olive,
         }}
       >
-        <Logo size={18} mono />
+        <Logo size={26} mono />
         <span>© 2026 GOCAS · Cali · LATAM</span>
         {!onAmber && (
           <a href="mailto:hola@gocas.co" style={{ color: G.olive, textDecoration: 'none' }}>
