@@ -654,3 +654,24 @@ Todas las tablas siguen estas convenciones consistentes:
 - [ ] Decidir y construir el frontend del dashboard (Next.js + Supabase, Retool o Lovable).
 - [ ] Crear plantilla de cotización en Google Docs que se llene con datos de Supabase.
 - [ ] Conectar n8n para automatizaciones (ej: facturación automática de mantenimientos mensuales).
+
+---
+
+## 11. Extensiones aplicadas vía migraciones
+
+Además de las 18 tablas base, el repositorio incluye migraciones en `gocas-landing/supabase/migrations/`:
+
+### `0001_leads.sql` — Captura de leads
+Tabla **`leads`** para el formulario de contacto de la landing (full_name, email, company, phone, message, source, created_at). RLS: `anon` puede insertar, `authenticated` puede leer. *(No está incluida en el conteo de 18 tablas de arriba.)*
+
+### `0002_team_projects_profit.sql` — Equipo y reparto por proyecto
+Soporta el modelo operativo de GOCAS (marketing · broker · programador) y el reparto de utilidades.
+
+- **Enums:** `team_member_type` (`partner` / `employee`), `project_role` (`marketing` / `broker` / `programmer` / `lead_programmer`).
+- **`team_members`** — socios y empleados, vinculados al login (`auth_user_id` → `auth.users`), con tipo, cargo y `equity_percentage` (solo socios). Seed con los 4 socios.
+- **`project_assignments`** — quién cumple qué rol en cada proyecto y su `profit_share_percentage`. Unique por (proyecto, miembro, rol).
+- **`projects.house_share_percentage`** — % que retiene GOCAS por proyecto (default 20).
+- **Vista `project_profit_distribution`** — calcula `share_usd` por persona = ingreso del proyecto (suma de `payments`) × su `profit_share_percentage`.
+- **RLS:** solo `authenticated` (mismo criterio del resto del esquema).
+
+Estas tablas alimentan el **portal interno** del sitio (`/portal`) que usa Supabase Auth.

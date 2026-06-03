@@ -19,7 +19,9 @@ type LinkDef = {
 const LINKS: LinkDef[] = [
   { label: 'Inicio',    href: '/#inicio',    homeSection: 'inicio' },
   { label: 'Servicios', href: '/servicios',  pathPrefix: '/servicios' },
+  { label: 'Proceso',   href: '/#proceso',   homeSection: 'proceso' },
   { label: 'Casos',     href: '/#casos',     homeSection: 'casos' },
+  { label: 'Nosotros',  href: '/#nosotros',  homeSection: 'nosotros' },
   { label: 'Contacto',  href: '/contacto',   pathPrefix: '/contacto' },
 ];
 

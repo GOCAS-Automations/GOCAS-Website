@@ -3,7 +3,9 @@ export const dynamic = 'force-dynamic';
 import Nav from '@/components/sections/Nav';
 import Hero from '@/components/sections/Hero';
 import Servicios from '@/components/sections/Servicios';
+import Proceso from '@/components/sections/Proceso';
 import Casos from '@/components/sections/Casos';
+import Nosotros from '@/components/sections/Nosotros';
 import CtaContacto from '@/components/sections/CtaContacto';
 import Footer from '@/components/sections/Footer';
 import { G } from '@/lib/tokens';
@@ -14,7 +16,9 @@ export default function Home() {
       <Nav />
       <Hero />
       <Servicios />
+      <Proceso />
       <Casos />
+      <Nosotros />
       <CtaContacto />
       <Footer />
     </main>
