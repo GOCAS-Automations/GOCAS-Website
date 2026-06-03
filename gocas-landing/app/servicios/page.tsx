@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Nav from '@/components/sections/Nav';
 import Footer from '@/components/sections/Footer';
 import SvcIcon, { type IconName } from '@/components/SvcIcon';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { G } from '@/lib/tokens';
 import {
@@ -61,18 +62,18 @@ function PackageCard({ pkg, waNumber }: { pkg: ServicePackage; waNumber: string 
       style={{
         background: G.bone,
         border: `1px solid ${G.olive}`,
-        padding: 28,
+        padding: 20,
         display: 'flex',
         flexDirection: 'column',
-        gap: 14,
-        minHeight: 240,
+        gap: 12,
+        minHeight: 200,
       }}
     >
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
         <h3
           style={{
             fontFamily: 'Manrope, sans-serif',
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: 800,
             color: G.olive,
             textTransform: 'uppercase',
@@ -146,27 +147,16 @@ function PackageCard({ pkg, waNumber }: { pkg: ServicePackage; waNumber: string 
         <span>
           {pkg.is_recurring ? 'Plan recurrente' : `~ ${formatDuration(pkg.estimated_duration_days)}`}
         </span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <a
             href={waHref}
             target="_blank"
             rel="noreferrer"
             aria-label={`Escribir por WhatsApp sobre ${pkg.name}`}
             title="WhatsApp"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 26,
-              height: 26,
-              background: G.amber,
-              color: G.olive,
-              textDecoration: 'none',
-            }}
+            style={{ display: 'inline-flex' }}
           >
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
-              <path d="M20.52 3.48A11.78 11.78 0 0 0 12.05 0C5.5 0 .2 5.3.2 11.85a11.8 11.8 0 0 0 1.6 5.94L0 24l6.4-1.68a11.83 11.83 0 0 0 5.65 1.44h.01c6.55 0 11.85-5.3 11.85-11.85 0-3.16-1.23-6.13-3.39-8.43Zm-8.47 18.2h-.01a9.84 9.84 0 0 1-5.02-1.38l-.36-.21-3.8 1 1.02-3.7-.24-.38a9.83 9.83 0 0 1-1.51-5.16c0-5.45 4.43-9.88 9.88-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.45-4.43 9.82-9.85 9.82Zm5.4-7.36c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.65-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.19-.24-.57-.48-.5-.66-.51l-.56-.01c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.71.23 1.36.2 1.87.12.57-.08 1.75-.71 2-1.4.25-.69.25-1.28.18-1.4-.07-.13-.27-.2-.57-.35Z" />
-            </svg>
+            <WhatsAppIcon size={26} color={G.bone} circleBg={G.olive} />
           </a>
           <Link href={cotizarHref} style={{ color: G.olive, textDecoration: 'none' }}>
             Cotizar →
@@ -259,8 +249,8 @@ function CategoryBlock({
         className="gocas-pkg-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: 16,
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 14,
         }}
       >
         {packages.map((p) => (
@@ -275,6 +265,9 @@ export default async function ServiciosPage() {
   const packages = await getPackages();
   const groups = groupByCategory(packages);
   const waNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '573000000000';
+  const generalWaHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(
+    'Hola GOCAS, quiero un software a la medida. ¿Podemos conversar?'
+  )}`;
 
   return (
     <main style={{ width: '100%', background: G.sand, color: G.olive }}>
@@ -318,6 +311,77 @@ export default async function ServiciosPage() {
         </p>
       </section>
 
+      {/* Destacado: software a la medida (núcleo de la oferta) + publicidad/redes */}
+      <section style={{ background: G.olive, color: G.bone, padding: '48px 56px', borderTop: `1px solid ${G.olive}` }}>
+        <div
+          className="gocas-feat-grid"
+          style={{ display: 'grid', gridTemplateColumns: '1.55fr 1fr', gap: 22, alignItems: 'stretch' }}
+        >
+          {/* Software a la medida — resalta sobre el resto */}
+          <div style={{ border: `2px solid ${G.amber}`, padding: 32, display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 11, color: G.amber, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+              [ lo que mejor hacemos ]
+            </div>
+            <h2 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 40, fontWeight: 800, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1, margin: 0 }}>
+              Software<br />a la medida
+            </h2>
+            <p style={{ fontSize: 16, color: G.bone, lineHeight: 1.6, margin: 0, maxWidth: 560 }}>
+              ¿Lo de abajo no encaja <em>exactamente</em> con lo que necesitas? Eso es justo lo nuestro:
+              construimos la solución desde cero, alrededor de cómo tu negocio realmente opera.
+            </p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              {[
+                'Bases de datos personalizadas a tu operación',
+                'Sitio web, web app, app móvil o de escritorio',
+                'Integración con el software que ya usas',
+                'Automatizaciones e IA hechas a tu proceso',
+              ].map((f) => (
+                <li key={f} style={{ position: 'relative', paddingLeft: 18, fontSize: 14, color: G.bone, lineHeight: 1.45 }}>
+                  <span style={{ position: 'absolute', left: 0, top: 6, width: 8, height: 8, background: G.amber }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 4 }}>
+              <Link
+                href="/contacto"
+                style={{ background: G.amber, color: G.olive, padding: '14px 22px', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', textDecoration: 'none' }}
+              >
+                Cuéntanos qué necesitas →
+              </Link>
+              <a href={generalWaHref} target="_blank" rel="noreferrer" aria-label="WhatsApp" title="WhatsApp" style={{ display: 'inline-flex' }}>
+                <WhatsAppIcon size={42} color={G.olive} circleBg={G.amber} />
+              </a>
+            </div>
+          </div>
+
+          {/* Publicidad & redes */}
+          <div style={{ border: `1px solid ${G.oliveSoft}`, padding: 28, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 11, color: G.amber, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+              [ además ]
+            </div>
+            <h3 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', textTransform: 'uppercase', lineHeight: 1.05, margin: 0 }}>
+              Publicidad<br />& redes
+            </h3>
+            <p style={{ fontSize: 14, color: G.oliveMute, lineHeight: 1.55, margin: 0 }}>
+              No solo construimos: también te traemos clientes.
+            </p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 9 }}>
+              {[
+                'Campañas en Google Ads',
+                'Campañas en Meta (Facebook · Instagram)',
+                'Integración de tus redes sociales con el sitio',
+              ].map((f) => (
+                <li key={f} style={{ position: 'relative', paddingLeft: 18, fontSize: 14, color: G.bone, lineHeight: 1.45 }}>
+                  <span style={{ position: 'absolute', left: 0, top: 6, width: 8, height: 8, background: G.amber }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <div style={{ background: G.bone, borderTop: `1px solid ${G.olive}`, borderBottom: `1px solid ${G.olive}` }}>
         {CATEGORY_ORDER.map((cat, i) => (
           <CategoryBlock
@@ -329,29 +393,6 @@ export default async function ServiciosPage() {
           />
         ))}
 
-        <div style={{ padding: '24px 56px 56px' }}>
-          <Link
-            href="/contacto"
-            style={{
-              display: 'block',
-              background: G.amber,
-              color: G.olive,
-              padding: '28px 32px',
-              textDecoration: 'none',
-              fontFamily: 'Manrope, sans-serif',
-              fontSize: 22,
-              fontWeight: 800,
-              textTransform: 'uppercase',
-              letterSpacing: '-0.015em',
-              lineHeight: 1.1,
-            }}
-          >
-            ¿No encaja exactamente?<br />
-            <span style={{ fontSize: 16, fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>
-              Cuéntanos qué te quita el tiempo y te armamos algo a la medida →
-            </span>
-          </Link>
-        </div>
       </div>
 
       <Footer background={G.sand} />

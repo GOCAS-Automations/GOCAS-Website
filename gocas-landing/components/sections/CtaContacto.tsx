@@ -53,14 +53,14 @@ export default async function CtaContacto() {
               fontWeight: 800,
               letterSpacing: '-0.03em',
               textTransform: 'uppercase',
-              lineHeight: 0.98,
+              lineHeight: 1.08,
               maxWidth: 720,
               margin: 0,
               marginBottom: 28,
             }}
           >
             Cuéntanos<br />qué te quita<br />
-            <span style={{ background: G.amber, color: G.olive, display: 'inline-block', padding: '0 12px', lineHeight: 1.12 }}>
+            <span style={{ background: G.amber, color: G.olive, display: 'inline-block', padding: '0 12px', lineHeight: 1.12, marginTop: 4 }}>
               el tiempo.
             </span>
           </h2>

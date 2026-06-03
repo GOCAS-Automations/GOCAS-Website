@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Logo from '@/components/Logo';
 import { G } from '@/lib/tokens';
 
@@ -30,16 +29,11 @@ export default function Footer({ background = G.amber }: { background?: string }
       >
         <Logo size={18} mono />
         <span>© 2026 GOCAS · Cali · LATAM</span>
-        <span style={{ display: 'flex', gap: 18, alignItems: 'center' }}>
-          {!onAmber && (
-            <a href="mailto:hola@gocas.co" style={{ color: G.olive, textDecoration: 'none' }}>
-              hola@gocas.co
-            </a>
-          )}
-          <Link href="/portal" style={{ color: G.olive, textDecoration: 'none', opacity: 0.65 }}>
-            Acceso equipo
-          </Link>
-        </span>
+        {!onAmber && (
+          <a href="mailto:hola@gocas.co" style={{ color: G.olive, textDecoration: 'none' }}>
+            hola@gocas.co
+          </a>
+        )}
       </div>
     </footer>
   );

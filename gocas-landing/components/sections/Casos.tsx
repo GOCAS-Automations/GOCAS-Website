@@ -139,8 +139,9 @@ export default async function Casos() {
                     fontFamily: '"JetBrains Mono", monospace',
                     fontSize: 11,
                     color: G.oliveSoft,
-                    letterSpacing: '0.1em',
+                    letterSpacing: '0.06em',
                     textTransform: 'uppercase',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   [ {c.contact} ]
@@ -219,7 +220,6 @@ export default async function Casos() {
                   {c.url_label}
                 </span>
               )}
-              <div style={{ width: 28, height: 28, background: G.amber, flexShrink: 0 }} />
             </footer>
           </article>
         ))}

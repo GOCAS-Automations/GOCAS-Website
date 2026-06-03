@@ -115,22 +115,40 @@ export default function Nav() {
           );
         })}
       </div>
-      <Link
-        href="/contacto"
-        className="gocas-nav-cta"
-        style={{
-          background: G.olive,
-          color: G.bone,
-          padding: '10px 18px',
-          fontSize: 12,
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          textDecoration: 'none',
-        }}
-      >
-        Hablemos →
-      </Link>
+      <div className="gocas-nav-right" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <Link
+          href="/login"
+          className="gocas-nav-login"
+          style={{
+            border: `1.5px solid ${G.olive}`,
+            color: G.olive,
+            padding: '9px 16px',
+            fontSize: 12,
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            textDecoration: 'none',
+          }}
+        >
+          Ingresar
+        </Link>
+        <Link
+          href="/contacto"
+          className="gocas-nav-cta"
+          style={{
+            background: G.olive,
+            color: G.bone,
+            padding: '10px 18px',
+            fontSize: 12,
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            textDecoration: 'none',
+          }}
+        >
+          Hablemos →
+        </Link>
+      </div>
       <MobileNav />
     </nav>
   );

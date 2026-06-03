@@ -103,7 +103,7 @@ export default function MobileNav() {
               </Link>
             ))}
           </nav>
-          <div style={{ marginTop: 'auto', paddingTop: 32, borderTop: `1px solid ${G.olive}` }}>
+          <div style={{ marginTop: 'auto', paddingTop: 32, borderTop: `1px solid ${G.olive}`, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <Link
               href="/contacto"
               onClick={() => setOpen(false)}
@@ -120,6 +120,23 @@ export default function MobileNav() {
               }}
             >
               Hablemos →
+            </Link>
+            <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              style={{
+                display: 'inline-block',
+                border: `1.5px solid ${G.olive}`,
+                color: G.olive,
+                padding: '14px 22px',
+                fontSize: 13,
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                textDecoration: 'none',
+              }}
+            >
+              Ingresar
             </Link>
           </div>
         </div>

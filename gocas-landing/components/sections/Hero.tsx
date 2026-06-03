@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import HeroTestimonial from '@/components/HeroTestimonial';
+import HeroHighlight from '@/components/HeroHighlight';
 import { getContent } from '@/lib/content';
 import { G } from '@/lib/tokens';
 
@@ -9,17 +10,18 @@ export default async function Hero() {
   const c = await getContent();
 
   return (
-    <section
-      id="inicio"
-      className="gocas-hero"
-      style={{
-        padding: '72px 56px 64px',
-        display: 'grid',
-        gridTemplateColumns: '1.5fr 1fr',
-        gap: 48,
-        alignItems: 'flex-start',
-      }}
-    >
+    <section id="inicio" style={{ padding: '72px 56px 64px' }}>
+      <div
+        className="gocas-hero"
+        style={{
+          maxWidth: 1180,
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: '1.4fr 1fr',
+          gap: 56,
+          alignItems: 'center',
+        }}
+      >
       <div>
         <h1
           className="gocas-hero-title"
@@ -35,17 +37,7 @@ export default async function Hero() {
           }}
         >
           {c.hero_line1}<br />{c.hero_line2}<br />{c.hero_line3}{' '}
-          <span
-            style={{
-              background: G.amber,
-              color: G.olive,
-              display: 'inline-block',
-              padding: '0 12px',
-              lineHeight: 1.12,
-            }}
-          >
-            {c.hero_highlight}
-          </span>
+          <HeroHighlight word={c.hero_highlight} />
         </h1>
         <p style={{ fontSize: 19, color: G.oliveSoft, lineHeight: 1.6, marginTop: 28, maxWidth: 540 }}>
           {c.hero_subtitle}
@@ -83,7 +75,8 @@ export default async function Hero() {
           </Link>
         </div>
       </div>
-      <HeroTestimonial />
+        <HeroTestimonial />
+      </div>
     </section>
   );
 }
