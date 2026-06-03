@@ -54,7 +54,9 @@ export default function Proceso() {
           <div
             key={p.n}
             style={{
-              padding: '22px 24px 0 0',
+              paddingTop: 22,
+              paddingRight: 28,
+              paddingLeft: i === 0 ? 0 : 28,
               borderRight: i < 3 ? `1px solid ${G.rule}` : 'none',
             }}
           >
@@ -83,17 +85,17 @@ export default function Proceso() {
             >
               {p.t}
             </div>
-            <div style={{ fontSize: 13, color: G.oliveSoft, lineHeight: 1.5 }}>{p.d}</div>
+            <div style={{ fontSize: 15, color: G.oliveSoft, lineHeight: 1.55 }}>{p.d}</div>
           </div>
         ))}
       </div>
       <p
         style={{
           marginTop: 40,
-          fontSize: 13,
+          fontSize: 14,
           color: G.oliveSoft,
-          lineHeight: 1.55,
-          maxWidth: 640,
+          lineHeight: 1.6,
+          maxWidth: 680,
           fontFamily: '"JetBrains Mono", monospace',
           letterSpacing: '0.05em',
         }}

@@ -56,8 +56,9 @@ create index if not exists idx_assignments_project on public.project_assignments
 create index if not exists idx_assignments_member on public.project_assignments (team_member_id);
 
 -- 4. % de la casa (GOCAS) por proyecto ---------------------------------------
+-- Reparto base por proyecto: programador 60 · broker 12 · GOCAS 18 · marketing 10.
 alter table public.projects
-  add column if not exists house_share_percentage numeric(5,2) not null default 20;
+  add column if not exists house_share_percentage numeric(5,2) not null default 18;
 
 -- 5. updated_at triggers (reusa la función existente update_updated_at_column) -
 drop trigger if exists trg_team_members_updated_at on public.team_members;
@@ -113,11 +114,20 @@ exception when duplicate_object then null; end $$;
 
 -- 8. Seed de los 4 socios -----------------------------------------------------
 -- auth_user_id queda null hasta que cada socio cree su cuenta de login;
--- luego se vincula por email. Equity según la estructura societaria.
+-- luego se vincula por email. Equity según la estructura societaria (provisional).
+-- Idempotente: inserta si no existe (por full_name).
 insert into public.team_members (full_name, email, member_type, title, equity_percentage)
-values
-  ('César Castaño',  null, 'partner', 'Administración + Programador',            30.00),
-  ('Alejandra Gómez', null, 'partner', 'Programadora + Embajadora de marca',     25.00),
-  ('Tomás Ossa',      null, 'partner', 'Programador en jefe',                    25.00),
-  ('Chepe López',     null, 'partner', 'Leads, marketing y publicidad',          20.00)
-on conflict do nothing;
+select v.full_name, v.email, v.member_type::team_member_type, v.title, v.equity_percentage
+from (values
+  ('César Castaño',   null, 'partner', 'Administración + Programador',        30.00),
+  ('Alejandra Gómez', null, 'partner', 'Programadora + Embajadora de marca',  20.00),
+  ('Tomás Ossa',      null, 'partner', 'Programador en jefe',                 21.00),
+  ('Chepe López',     null, 'partner', 'Leads, marketing y publicidad',       29.00)
+) as v(full_name, email, member_type, title, equity_percentage)
+where not exists (select 1 from public.team_members t where t.full_name = v.full_name);
+
+-- Asegura el equity vigente aunque los socios ya estuvieran sembrados.
+update public.team_members set equity_percentage = 30.00 where full_name = 'César Castaño'   and member_type = 'partner';
+update public.team_members set equity_percentage = 20.00 where full_name = 'Alejandra Gómez' and member_type = 'partner';
+update public.team_members set equity_percentage = 21.00 where full_name = 'Tomás Ossa'      and member_type = 'partner';
+update public.team_members set equity_percentage = 29.00 where full_name = 'Chepe López'     and member_type = 'partner';

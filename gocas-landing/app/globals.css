@@ -35,6 +35,9 @@ html, body {
 
 * { border-radius: 0 !important; }
 
+/* Excepción a los bordes duros: elementos circulares (ej. ícono de WhatsApp). */
+.gocas-round { border-radius: 9999px !important; }
+
 a { color: inherit; }
 
 input:focus, textarea:focus {

@@ -1,5 +1,6 @@
 -- Tabla para capturar leads del formulario de contacto de la landing.
 -- Aplicar en el SQL editor del proyecto Supabase (hvyxtdmntwledjpsonac).
+-- Idempotente: se puede correr varias veces sin error.
 
 create table if not exists public.leads (
   id uuid primary key default gen_random_uuid(),
@@ -14,8 +15,10 @@ create table if not exists public.leads (
 
 alter table public.leads enable row level security;
 
+drop policy if exists "public can insert leads" on public.leads;
 create policy "public can insert leads" on public.leads
   for insert to anon, authenticated with check (true);
 
+drop policy if exists "authenticated can read leads" on public.leads;
 create policy "authenticated can read leads" on public.leads
   for select to authenticated using (auth.uid() is not null);

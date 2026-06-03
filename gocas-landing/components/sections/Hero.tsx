@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import HeroTestimonial from '@/components/HeroTestimonial';
+import { getContent } from '@/lib/content';
 import { G } from '@/lib/tokens';
 
-export default function Hero() {
+export const dynamic = 'force-dynamic';
+
+export default async function Hero() {
+  const c = await getContent();
+
   return (
     <section
       id="inicio"
@@ -23,18 +28,27 @@ export default function Hero() {
             fontSize: 78,
             fontWeight: 800,
             letterSpacing: '-0.04em',
-            lineHeight: 0.96,
+            lineHeight: 1.04,
             textTransform: 'uppercase',
             color: G.olive,
             margin: 0,
           }}
         >
-          Software<br />armado<br />a tu{' '}
-          <span style={{ background: G.amber, color: G.olive, padding: '0 12px' }}>medida.</span>
+          {c.hero_line1}<br />{c.hero_line2}<br />{c.hero_line3}{' '}
+          <span
+            style={{
+              background: G.amber,
+              color: G.olive,
+              display: 'inline-block',
+              padding: '0 12px',
+              lineHeight: 1.12,
+            }}
+          >
+            {c.hero_highlight}
+          </span>
         </h1>
-        <p style={{ fontSize: 17, color: G.oliveSoft, lineHeight: 1.55, marginTop: 28, maxWidth: 520 }}>
-          Web, sistemas, automatizaciones e IA — pieza por pieza, hechos a la forma real en que opera tu equipo.
-          Sin plantillas disfrazadas, sin agencias frías.
+        <p style={{ fontSize: 19, color: G.oliveSoft, lineHeight: 1.6, marginTop: 28, maxWidth: 540 }}>
+          {c.hero_subtitle}
         </p>
         <div className="gocas-hero-ctas" style={{ display: 'flex', gap: 0, marginTop: 36 }}>
           <Link

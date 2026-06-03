@@ -1,7 +1,12 @@
 import ContactForm from '@/components/ContactForm';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { getContent } from '@/lib/content';
 import { G } from '@/lib/tokens';
 
-export default function CtaContacto() {
+export const dynamic = 'force-dynamic';
+
+export default async function CtaContacto() {
+  const content = await getContent();
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '573000000000';
   const waLink = `https://wa.me/${wa}?text=${encodeURIComponent(
     'Hola GOCAS, me gustaría conversar sobre un proyecto.'
@@ -12,8 +17,9 @@ export default function CtaContacto() {
       id="contacto"
       style={{
         padding: '72px 56px 56px',
-        background: G.amber,
+        background: G.bone,
         color: G.olive,
+        borderTop: `1px solid ${G.olive}`,
         scrollMarginTop: 80,
       }}
     >
@@ -31,11 +37,10 @@ export default function CtaContacto() {
             style={{
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: 11,
-              color: G.olive,
+              color: G.amber,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               marginBottom: 14,
-              opacity: 0.7,
             }}
           >
             [ contacto ]
@@ -54,10 +59,13 @@ export default function CtaContacto() {
               marginBottom: 28,
             }}
           >
-            Cuéntanos<br />qué te quita<br />el tiempo. →
+            Cuéntanos<br />qué te quita<br />
+            <span style={{ background: G.amber, color: G.olive, display: 'inline-block', padding: '0 12px', lineHeight: 1.12 }}>
+              el tiempo.
+            </span>
           </h2>
-          <p style={{ fontSize: 15, color: G.olive, lineHeight: 1.55, maxWidth: 480, marginBottom: 28 }}>
-            Llena el form, escríbenos directo o agéndanos por WhatsApp. Lo que te quede más fácil.
+          <p style={{ fontSize: 17, color: G.oliveSoft, lineHeight: 1.6, maxWidth: 480, marginBottom: 28 }}>
+            {content.contact_intro}
           </p>
           <ContactForm source="home" />
         </div>
@@ -93,13 +101,17 @@ export default function CtaContacto() {
               background: G.amber,
               color: G.olive,
               padding: '16px 22px',
-              fontSize: 14,
+              fontSize: 15,
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
             }}
           >
+            <WhatsAppIcon size={26} color={G.bone} circleBg={G.olive} />
             WhatsApp →
           </a>
           <a
@@ -109,7 +121,7 @@ export default function CtaContacto() {
               color: G.bone,
               border: `2px solid ${G.bone}`,
               padding: '14px 22px',
-              fontSize: 14,
+              fontSize: 15,
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
@@ -124,7 +136,7 @@ export default function CtaContacto() {
               borderTop: `1px solid ${G.ruleDark}`,
               marginTop: 12,
               paddingTop: 16,
-              fontSize: 13,
+              fontSize: 14,
               color: G.oliveMute,
               lineHeight: 1.55,
             }}

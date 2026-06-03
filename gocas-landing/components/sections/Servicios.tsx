@@ -101,7 +101,7 @@ export default async function Servicios() {
             6 formas<br />de ordenar<br />tu negocio.
           </h2>
         </div>
-        <p style={{ fontSize: 14, color: G.oliveSoft, maxWidth: 280, lineHeight: 1.55 }}>
+        <p style={{ fontSize: 16, color: G.oliveSoft, maxWidth: 320, lineHeight: 1.6 }}>
           Cada línea es modular. Tomas lo que necesitas, dejas lo que no.
         </p>
       </header>
@@ -174,7 +174,7 @@ export default async function Servicios() {
                 >
                   {s.label}
                 </div>
-                <div style={{ fontSize: 13, color: G.oliveSoft, lineHeight: 1.5, marginBottom: 12 }}>
+                <div style={{ fontSize: 14.5, color: G.oliveSoft, lineHeight: 1.55, marginBottom: 12 }}>
                   {s.desc}
                 </div>
                 {aggregate.count > 0 && (

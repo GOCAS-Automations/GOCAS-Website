@@ -1,58 +1,12 @@
 import Link from 'next/link';
+import { getCases } from '@/lib/content';
 import { G } from '@/lib/tokens';
 
-type Case = {
-  client: string;
-  contact: string;
-  url?: string;
-  urlLabel?: string;
-  scope: string;
-  quote: string;
-};
+export const dynamic = 'force-dynamic';
 
-const cases: Case[] = [
-  {
-    client: 'YoTeRento',
-    contact: 'Luis Pablo Fernández',
-    url: 'https://www.yoterento.com/',
-    urlLabel: 'yoterento.com',
-    scope:
-      'Desarrollo del sitio web corporativo, estructuración integral de la base de datos y chatbot capaz de generar cotizaciones automáticas en una sola interacción. Actualmente en desarrollo: una web app que centraliza la operación completa del negocio.',
-    quote:
-      '“GOCAS armó nuestro flujo desde cero — del primer click del usuario hasta la cotización lista para enviar — y ahora estamos llevando todo el negocio a una sola web app.”',
-  },
-  {
-    client: 'Balcón Inmobiliario del Valle',
-    contact: 'Paola Marín',
-    url: 'https://www.balconinmobiliario.com/',
-    urlLabel: 'balconinmobiliario.com',
-    scope:
-      'Desarrollo del sitio web, organización del inventario inmobiliario y chatbot especializado con consulta en tiempo real al inventario y agendamiento automático de citas con asesores.',
-    quote:
-      '“El chatbot atiende, muestra inventario y agenda citas solo. Nuestras asesoras dejaron de copiar y pegar fichas de inmuebles todo el día.”',
-  },
-  {
-    client: 'Nexus Solutions Agency',
-    contact: 'Camilo Cuadros',
-    url: 'https://nexussolutionsagency.com/',
-    urlLabel: 'nexussolutionsagency.com',
-    scope:
-      'Desarrollo de landing page y sistema automatizado de prospección y contacto de leads. Pipeline de captación que opera de forma autónoma, entregando prospectos calificados sin intervención manual.',
-    quote:
-      '“Nos montaron una máquina de leads. Lo que antes era buscar uno por uno ahora llega listo a nuestra bandeja todos los días.”',
-  },
-  {
-    client: 'Prime Padel',
-    contact: 'Juan Francisco Roldán',
-    urlLabel: 'Club de Pádel · Cali, Colombia',
-    scope:
-      'Desarrollo de ERP multi-usuario con dashboard a la medida del club: gestión de reservas, miembros, inventario y reportes operativos integrados en una sola plataforma.',
-    quote:
-      '“Tener todo el club en un solo dashboard cambió la forma en que tomamos decisiones. Sabemos qué pasa en la cancha y en la caja al mismo tiempo.”',
-  },
-];
+export default async function Casos() {
+  const cases = await getCases();
 
-export default function Casos() {
   return (
     <section
       id="casos"
@@ -103,7 +57,7 @@ export default function Casos() {
             Lo que<br />hemos hecho.
           </h2>
         </div>
-        <p style={{ fontSize: 14, color: G.oliveSoft, maxWidth: 320, lineHeight: 1.55 }}>
+        <p style={{ fontSize: 16, color: G.oliveSoft, maxWidth: 340, lineHeight: 1.6 }}>
           Equipos reales que confiaron en nosotros. Las reseñas de cada uno son texto de muestra — las
           actualizamos con las palabras textuales del cliente próximamente.
         </p>
@@ -121,7 +75,7 @@ export default function Casos() {
       >
         {cases.map((c) => (
           <article
-            key={c.client}
+            key={c.id}
             style={{
               padding: 32,
               borderRight: `1px solid ${G.olive}`,
@@ -134,25 +88,36 @@ export default function Casos() {
               position: 'relative',
             }}
           >
-            <span
-              style={{
-                position: 'absolute',
-                top: 18,
-                right: 20,
-                background: G.amber,
-                color: G.olive,
-                fontFamily: '"JetBrains Mono", monospace',
-                fontSize: 9,
-                fontWeight: 500,
-                padding: '3px 8px',
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-              }}
-            >
-              [ reseña pronto ]
-            </span>
+            {c.badge && (
+              <span
+                style={{
+                  position: 'absolute',
+                  top: 18,
+                  right: 20,
+                  background: G.amber,
+                  color: G.olive,
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: 9,
+                  fontWeight: 500,
+                  padding: '3px 8px',
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                [ {c.badge} ]
+              </span>
+            )}
 
-            <header style={{ paddingRight: 110 }}>
+            {c.image_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={c.image_url}
+                alt={c.client}
+                style={{ width: '100%', height: 160, objectFit: 'cover', border: `1px solid ${G.olive}` }}
+              />
+            )}
+
+            <header style={{ paddingRight: c.badge ? 110 : 0 }}>
               <h3
                 style={{
                   fontFamily: 'Manrope, sans-serif',
@@ -167,18 +132,20 @@ export default function Casos() {
               >
                 {c.client}
               </h3>
-              <div
-                style={{
-                  marginTop: 6,
-                  fontFamily: '"JetBrains Mono", monospace',
-                  fontSize: 11,
-                  color: G.oliveSoft,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                [ {c.contact} ]
-              </div>
+              {c.contact && (
+                <div
+                  style={{
+                    marginTop: 6,
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: 11,
+                    color: G.oliveSoft,
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  [ {c.contact} ]
+                </div>
+              )}
             </header>
 
             <div
@@ -193,31 +160,24 @@ export default function Casos() {
             >
               [ lo que hicimos ]
             </div>
-            <p
-              style={{
-                fontSize: 14,
-                color: G.olive,
-                lineHeight: 1.55,
-                margin: 0,
-              }}
-            >
-              {c.scope}
-            </p>
+            <p style={{ fontSize: 15.5, color: G.olive, lineHeight: 1.6, margin: 0 }}>{c.scope}</p>
 
-            <blockquote
-              style={{
-                fontFamily: 'Manrope, sans-serif',
-                fontStyle: 'italic',
-                fontSize: 15,
-                lineHeight: 1.5,
-                color: G.oliveSoft,
-                margin: 0,
-                paddingLeft: 14,
-                borderLeft: `2px solid ${G.amber}`,
-              }}
-            >
-              {c.quote}
-            </blockquote>
+            {c.quote && (
+              <blockquote
+                style={{
+                  fontFamily: 'Manrope, sans-serif',
+                  fontStyle: 'italic',
+                  fontSize: 16,
+                  lineHeight: 1.55,
+                  color: G.oliveSoft,
+                  margin: 0,
+                  paddingLeft: 14,
+                  borderLeft: `2px solid ${G.amber}`,
+                }}
+              >
+                {c.quote}
+              </blockquote>
+            )}
 
             <footer
               style={{
@@ -245,7 +205,7 @@ export default function Casos() {
                     paddingBottom: 1,
                   }}
                 >
-                  {c.urlLabel} ↗
+                  {c.url_label || c.url} ↗
                 </a>
               ) : (
                 <span
@@ -256,7 +216,7 @@ export default function Casos() {
                     letterSpacing: '0.05em',
                   }}
                 >
-                  {c.urlLabel}
+                  {c.url_label}
                 </span>
               )}
               <div style={{ width: 28, height: 28, background: G.amber, flexShrink: 0 }} />
