@@ -125,10 +125,16 @@ input:focus, textarea:focus {
   .gocas-equipo-header,
   .gocas-cta-grid,
   .gocas-feat-grid,
+  .gocas-cat-header,
   .gocas-faq-row {
     grid-template-columns: 1fr !important;
     flex-direction: column !important;
     align-items: flex-start !important;
+  }
+
+  /* En celular ocultamos las imágenes de los casos para no desacomodar las tarjetas. */
+  .gocas-case-thumb {
+    display: none !important;
   }
 
   .gocas-section-title {

@@ -147,6 +147,7 @@ export default async function Casos() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`Ver ${c.client}`}
+                    className="gocas-case-thumb"
                     style={{ flexShrink: 0, display: 'block', lineHeight: 0 }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -160,7 +161,7 @@ export default async function Casos() {
                 ) : (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    className="gocas-thumb"
+                    className="gocas-thumb gocas-case-thumb"
                     src={c.image_url}
                     alt={c.client}
                     style={{ width: 200, height: 'auto', objectFit: 'cover', flexShrink: 0, border: `1px solid ${G.olive}` }}

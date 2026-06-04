@@ -205,13 +205,13 @@ function CategoryBlock({
           gap: 24,
         }}
       >
-        <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start', minWidth: 0 }}>
           <SvcIcon name={CATEGORY_ICON[category] as IconName} size={48} />
-          <div>
+          <div style={{ minWidth: 0 }}>
             <div
               style={{
                 fontFamily: '"JetBrains Mono", monospace',
-                fontSize: 11,
+                fontSize: 13,
                 color: G.amber,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
@@ -242,10 +242,12 @@ function CategoryBlock({
         <span
           style={{
             fontFamily: '"JetBrains Mono", monospace',
-            fontSize: 10,
+            fontSize: 11,
             color: G.oliveSoft,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
+            flexShrink: 0,
+            whiteSpace: 'nowrap',
           }}
         >
           [ {packages.length} paquete{packages.length > 1 ? 's' : ''} ]
