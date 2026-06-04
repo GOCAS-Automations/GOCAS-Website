@@ -11,6 +11,28 @@
   0%, 49% { opacity: 1; }
   50%, 100% { opacity: 0; }
 }
+
+/* Marquee de logos de clientes */
+.gocas-marquee { width: 100%; overflow: hidden; }
+.gocas-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: gocas-marquee 32s linear infinite;
+}
+.gocas-marquee-track img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+.gocas-marquee:hover .gocas-marquee-track { animation-play-state: paused; }
+@keyframes gocas-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 .gocas-caret {
   animation: gocas-blink 1s step-end infinite;
   margin-left: 1px;

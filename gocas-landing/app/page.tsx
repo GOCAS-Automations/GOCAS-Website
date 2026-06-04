@@ -5,6 +5,7 @@ import Hero from '@/components/sections/Hero';
 import Servicios from '@/components/sections/Servicios';
 import Proceso from '@/components/sections/Proceso';
 import Casos from '@/components/sections/Casos';
+import Confianza from '@/components/sections/Confianza';
 import CtaContacto from '@/components/sections/CtaContacto';
 import Footer from '@/components/sections/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
@@ -18,6 +19,7 @@ export default function Home() {
       <Servicios />
       <Proceso />
       <Casos />
+      <Confianza />
       <CtaContacto />
       <Footer background={G.sand} />
       <FloatingWhatsApp />

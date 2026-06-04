@@ -6,7 +6,7 @@ Guía rápida para probar el sitio (manual) y lista de lo que falta. Para correr
 
 1. `cd gocas-landing && npm install`
 2. `cp .env.local.example .env.local` y rellena las variables (mínimo las de Supabase).
-3. Aplica las migraciones en Supabase (SQL editor), **en orden**: `0001` → `0002` → `0003` → `0004` (todas idempotentes, se pueden re-correr).
+3. Aplica las migraciones en Supabase (SQL editor), **en orden**: `0001` → `0008` (todas idempotentes, se pueden re-correr). Incluyen leads, equipo+reparto, contenido editable, planes de mantenimiento, logins de socios, casos, vías de contacto y textos.
 4. `npm run dev` → http://localhost:3000
 5. `npm run build` debe terminar sin errores antes de hacer push (Vercel despliega esto).
 

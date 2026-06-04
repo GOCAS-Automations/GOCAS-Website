@@ -12,8 +12,16 @@ const LABELS: Record<string, string> = {
   hero_line1: 'Hero · línea 1 del título',
   hero_line2: 'Hero · línea 2 del título',
   hero_line3: 'Hero · línea 3 (antes del resaltado)',
-  hero_highlight: 'Hero · palabra resaltada en ámbar',
+  hero_highlight: 'Hero · palabras resaltadas (separadas por coma, rotan)',
   hero_subtitle: 'Hero · párrafo descriptivo',
+  hero_cta_primary: 'Hero · botón principal',
+  hero_cta_secondary: 'Hero · botón secundario',
+  servicios_title: 'Servicios · título',
+  servicios_subtitle: 'Servicios · subtítulo',
+  proceso_title: 'Proceso · título',
+  casos_subtitle: 'Casos · subtítulo',
+  contact_title: 'Contacto · título',
+  contact_highlight: 'Contacto · palabra resaltada',
   contact_intro: 'Contacto · párrafo de intro',
 };
 

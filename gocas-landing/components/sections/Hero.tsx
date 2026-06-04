@@ -8,6 +8,10 @@ export const dynamic = 'force-dynamic';
 
 export default async function Hero() {
   const c = await getContent();
+  const highlightWords = (c.hero_highlight || 'medida.')
+    .split(',')
+    .map((w) => w.trim())
+    .filter(Boolean);
 
   return (
     <section id="inicio" style={{ padding: '72px 56px 64px' }}>
@@ -37,7 +41,7 @@ export default async function Hero() {
           }}
         >
           {c.hero_line1}<br />{c.hero_line2}<br />{c.hero_line3}{' '}
-          <HeroHighlight word={c.hero_highlight} />
+          <HeroHighlight words={highlightWords} />
         </h1>
         <p style={{ fontSize: 21, color: G.oliveSoft, lineHeight: 1.6, marginTop: 28, maxWidth: 560 }}>
           {c.hero_subtitle}
@@ -56,7 +60,7 @@ export default async function Hero() {
               textDecoration: 'none',
             }}
           >
-            Agenda una llamada →
+            {c.hero_cta_primary}
           </Link>
           <Link
             href="/servicios"
@@ -71,7 +75,7 @@ export default async function Hero() {
               textDecoration: 'none',
             }}
           >
-            Ver servicios
+            {c.hero_cta_secondary}
           </Link>
         </div>
       </div>

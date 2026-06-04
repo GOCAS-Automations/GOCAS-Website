@@ -96,9 +96,11 @@ El sitio usa dos cosas de Supabase:
 4. **`cases` + `site_content`** — contenido editable del sitio (proyectos realizados y textos del hero/contacto). Migración [`0003`](gocas-landing/supabase/migrations/0003_site_content.sql).
 5. **Planes de mantenimiento** — precios en COP + soporte y SLA. Migración [`0004`](gocas-landing/supabase/migrations/0004_maintenance_plans.sql).
 
-> Aplica las migraciones **en orden** (`0001` → `0004`) en el SQL editor de Supabase; todas son idempotentes.
+6. **`contact_channels`** — vías directas (WhatsApp, email, Instagram…) editables desde `/portal/contacto`. Migración [`0007`](gocas-landing/supabase/migrations/0007_contact_channels.sql). El email activo es el destinatario de la notificación de leads (reemplaza `CONTACT_EMAIL`).
+
+> Aplica las migraciones **en orden** (`0001` → `0008`) en el SQL editor de Supabase; todas son idempotentes. La `0005` fija los emails de login de los socios; la `0006` actualiza casos; la `0008` agrega más textos editables.
 >
-> Nota: `leads`, `team_members`, `project_assignments`, `cases` y `site_content` se agregaron vía migración y **no** están en el conteo original de 18 tablas; el documento `02_…` incluye una sección de extensiones (§11).
+> Nota: `leads`, `team_members`, `project_assignments`, `cases`, `site_content` y `contact_channels` se agregaron vía migración y **no** están en el conteo original de 18 tablas; el documento `02_…` incluye una sección de extensiones (§11).
 
 Para probar el sitio manualmente y ver qué falta: [TESTING.md](TESTING.md).
 

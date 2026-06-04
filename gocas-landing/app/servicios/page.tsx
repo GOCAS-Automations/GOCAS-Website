@@ -26,18 +26,24 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 async function getPackages(): Promise<ServicePackage[]> {
-  const { data, error } = await getSupabaseAdmin()
-    .from('service_packages')
-    .select(
-      'id, name, category, description, base_price_usd, estimated_duration_days, features, is_recurring, is_active'
-    )
-    .eq('is_active', true)
-    .is('deleted_at', null)
-    .order('category', { ascending: true })
-    .order('base_price_usd', { ascending: true });
+  // Resiliente: si Supabase no está configurado o falla, devuelve [] en vez de
+  // lanzar (evita que la página caiga con un error de cliente).
+  try {
+    const { data, error } = await getSupabaseAdmin()
+      .from('service_packages')
+      .select(
+        'id, name, category, description, base_price_usd, estimated_duration_days, features, is_recurring, is_active'
+      )
+      .eq('is_active', true)
+      .is('deleted_at', null)
+      .order('category', { ascending: true })
+      .order('base_price_usd', { ascending: true });
 
-  if (error) throw new Error(error.message);
-  return (data ?? []) as ServicePackage[];
+    if (error || !data) return [];
+    return data as ServicePackage[];
+  } catch {
+    return [];
+  }
 }
 
 function groupByCategory(packages: ServicePackage[]) {

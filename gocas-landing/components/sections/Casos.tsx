@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import { getCases } from '@/lib/content';
+import { getCases, getContent } from '@/lib/content';
 import { G } from '@/lib/tokens';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Casos() {
   const cases = await getCases();
+  const content = await getContent();
 
   return (
     <section
@@ -23,7 +24,7 @@ export default async function Casos() {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'flex-end',
+          alignItems: 'flex-start',
           marginBottom: 32,
           gap: 32,
         }}
@@ -57,9 +58,8 @@ export default async function Casos() {
             Lo que hemos hecho.
           </h2>
         </div>
-        <p style={{ fontSize: 17, color: G.oliveSoft, maxWidth: 360, lineHeight: 1.6 }}>
-          Equipos reales que confiaron en nosotros. Las reseñas de cada uno son texto de muestra — las
-          actualizamos con las palabras textuales del cliente próximamente.
+        <p style={{ fontSize: 17, color: G.oliveSoft, maxWidth: 380, lineHeight: 1.6 }}>
+          {content.casos_subtitle}
         </p>
       </header>
 

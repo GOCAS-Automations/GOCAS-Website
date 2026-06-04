@@ -3,6 +3,7 @@ import Nav from '@/components/sections/Nav';
 import Footer from '@/components/sections/Footer';
 import ContactForm from '@/components/ContactForm';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import DirectChannels from '@/components/DirectChannels';
 import { G } from '@/lib/tokens';
 
 export const dynamic = 'force-dynamic';
@@ -37,11 +38,6 @@ const faq = [
 ];
 
 export default function ContactoPage() {
-  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '573000000000';
-  const waLink = `https://wa.me/${wa}?text=${encodeURIComponent(
-    'Hola GOCAS, me gustaría conversar sobre un proyecto.'
-  )}`;
-
   return (
     <main style={{ width: '100%', background: G.sand, color: G.olive }}>
       <Nav />
@@ -137,39 +133,7 @@ export default function ContactoPage() {
               [ vías directas ]
             </div>
 
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                background: G.amber,
-                color: G.olive,
-                padding: '16px 22px',
-                fontSize: 14,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                textDecoration: 'none',
-              }}
-            >
-              WhatsApp →
-            </a>
-            <a
-              href="mailto:hola@gocas.co"
-              style={{
-                background: 'transparent',
-                color: G.bone,
-                border: `2px solid ${G.bone}`,
-                padding: '14px 22px',
-                fontSize: 14,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                textDecoration: 'none',
-              }}
-            >
-              hola@gocas.co
-            </a>
+            <DirectChannels />
 
             <div
               style={{

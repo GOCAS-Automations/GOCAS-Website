@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react';
 import { G } from '@/lib/tokens';
 
-// La palabra resaltada del Hero se escribe y se borra letra por letra, y al
-// reescribirse cambia de "formato" (color/fondo/tipografía) dentro de la marca.
+// La palabra resaltada se escribe y se borra letra por letra, rotando entre
+// varias palabras que encajan en "Software diseñado a tu ___" y cambiando de
+// "formato" (color/fondo/tipografía) dentro de la marca.
 type Variant = {
   background: string;
   color: string;
@@ -26,33 +27,38 @@ const DEL_MS = 50;
 const PAUSE_FULL_MS = 2600;
 const PAUSE_EMPTY_MS = 380;
 
-export default function HeroHighlight({ word }: { word: string }) {
-  const [text, setText] = useState(word);
-  const [vi, setVi] = useState(0);
+export default function HeroHighlight({ words }: { words: string[] }) {
+  const list = words.length ? words : ['medida.'];
+  const [text, setText] = useState(list[0]);
+  const [n, setN] = useState(0);
+  const [caretOn, setCaretOn] = useState(false);
 
   useEffect(() => {
     let mounted = true;
     let timer: ReturnType<typeof setTimeout>;
-    let i = word.length;
-    let v = 0;
+    let i = list[0].length;
+    let idx = 0;
     let mode: 'pauseFull' | 'deleting' | 'typing' = 'pauseFull';
 
+    const cur = () => list[idx % list.length];
     const schedule = (ms: number) => {
       timer = setTimeout(() => mounted && step(), ms);
     };
 
     function step() {
       if (mode === 'pauseFull') {
+        setCaretOn(false);
         mode = 'deleting';
         schedule(PAUSE_FULL_MS);
         return;
       }
+      setCaretOn(true);
       if (mode === 'deleting') {
         i = Math.max(0, i - 1);
-        setText(word.slice(0, i));
+        setText(cur().slice(0, i));
         if (i === 0) {
-          v = (v + 1) % VARIANTS.length;
-          setVi(v);
+          idx += 1;
+          setN(idx);
           mode = 'typing';
           schedule(PAUSE_EMPTY_MS);
         } else {
@@ -61,9 +67,9 @@ export default function HeroHighlight({ word }: { word: string }) {
         return;
       }
       // typing
-      i = Math.min(word.length, i + 1);
-      setText(word.slice(0, i));
-      if (i === word.length) {
+      i = Math.min(cur().length, i + 1);
+      setText(cur().slice(0, i));
+      if (i === cur().length) {
         mode = 'pauseFull';
         schedule(PAUSE_FULL_MS);
       } else {
@@ -76,9 +82,10 @@ export default function HeroHighlight({ word }: { word: string }) {
       mounted = false;
       clearTimeout(timer);
     };
-  }, [word]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [list.join('|')]);
 
-  const v = VARIANTS[vi];
+  const v = VARIANTS[n % VARIANTS.length];
 
   return (
     <span
@@ -96,7 +103,11 @@ export default function HeroHighlight({ word }: { word: string }) {
       }}
     >
       {text}
-      <span className="gocas-caret" style={{ color: v.color, fontWeight: 400 }}>▌</span>
+      {caretOn && (
+        <span className="gocas-caret" style={{ color: v.color, fontWeight: 400 }}>
+          ▌
+        </span>
+      )}
     </span>
   );
 }

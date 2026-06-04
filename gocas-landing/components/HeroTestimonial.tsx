@@ -103,21 +103,10 @@ export default function HeroTestimonial() {
         style={{
           marginTop: 14,
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-end',
           alignItems: 'center',
         }}
       >
-        <div
-          style={{
-            fontFamily: '"JetBrains Mono", monospace',
-            fontSize: 9,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: G.amber,
-          }}
-        >
-          [ reseña pronto ]
-        </div>
         <div style={{ display: 'flex', gap: 6 }}>
           {items.map((_, idx) => (
             <button

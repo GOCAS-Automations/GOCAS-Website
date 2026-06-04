@@ -1,4 +1,7 @@
+import { getContent } from '@/lib/content';
 import { G } from '@/lib/tokens';
+
+export const dynamic = 'force-dynamic';
 
 const steps = [
   { n: '01', t: 'Diagnóstico',     d: 'Una reunión sin compromiso para entender tu negocio y proceso real.' },
@@ -7,7 +10,8 @@ const steps = [
   { n: '04', t: 'Acompañamiento',   d: 'Entrega + capacitación + 10 días de correcciones gratis + soporte mensual.' },
 ];
 
-export default function Proceso() {
+export default async function Proceso() {
+  const content = await getContent();
   return (
     <section
       id="proceso"
@@ -39,7 +43,7 @@ export default function Proceso() {
           marginBottom: 36,
         }}
       >
-        Transparencia en cada paso.
+        {content.proceso_title}
       </h2>
       <div
         className="gocas-proceso-grid"

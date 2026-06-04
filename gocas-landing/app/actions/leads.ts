@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { getLeadRecipientEmail } from '@/lib/content';
 
 const LeadSchema = z.object({
   full_name: z.string().min(2, 'Cuéntanos cómo te llamas.').max(120),
@@ -54,7 +55,7 @@ export async function submitLead(formData: FormData): Promise<LeadActionResult> 
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_EMAIL;
+  const to = await getLeadRecipientEmail(); // email del canal activo (o CONTACT_EMAIL)
   if (apiKey && to) {
     try {
       const resend = new Resend(apiKey);

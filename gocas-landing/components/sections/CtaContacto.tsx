@@ -1,5 +1,5 @@
 import ContactForm from '@/components/ContactForm';
-import WhatsAppIcon from '@/components/WhatsAppIcon';
+import DirectChannels from '@/components/DirectChannels';
 import { getContent } from '@/lib/content';
 import { G } from '@/lib/tokens';
 
@@ -7,10 +7,6 @@ export const dynamic = 'force-dynamic';
 
 export default async function CtaContacto() {
   const content = await getContent();
-  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '573000000000';
-  const waLink = `https://wa.me/${wa}?text=${encodeURIComponent(
-    'Hola GOCAS, me gustaría conversar sobre un proyecto.'
-  )}`;
 
   return (
     <section
@@ -59,9 +55,9 @@ export default async function CtaContacto() {
               marginBottom: 28,
             }}
           >
-            Cuéntanos<br />qué te quita<br />
+            {content.contact_title}<br />
             <span style={{ background: G.amber, color: G.olive, display: 'inline-block', padding: '0 12px', lineHeight: 1.12, marginTop: 4 }}>
-              el tiempo.
+              {content.contact_highlight}
             </span>
           </h2>
           <p style={{ fontSize: 18, color: G.oliveSoft, lineHeight: 1.6, maxWidth: 620, marginBottom: 28 }}>
@@ -93,43 +89,7 @@ export default async function CtaContacto() {
             [ vías directas ]
           </div>
 
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              background: G.amber,
-              color: G.olive,
-              padding: '16px 22px',
-              fontSize: 15,
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-            }}
-          >
-            <WhatsAppIcon size={26} color={G.bone} circleBg={G.olive} />
-            WhatsApp →
-          </a>
-          <a
-            href="mailto:hola@gocas.co"
-            style={{
-              background: 'transparent',
-              color: G.bone,
-              border: `2px solid ${G.bone}`,
-              padding: '14px 22px',
-              fontSize: 15,
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              textDecoration: 'none',
-            }}
-          >
-            hola@gocas.co
-          </a>
+          <DirectChannels />
 
           <div
             style={{

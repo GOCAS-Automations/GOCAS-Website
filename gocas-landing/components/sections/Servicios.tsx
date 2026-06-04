@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SvcIcon, { type IconName } from '@/components/SvcIcon';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { getContent } from '@/lib/content';
 import { formatPackagePrice } from '@/lib/format';
 import { G } from '@/lib/tokens';
 import type { ServiceCategory } from '@/lib/types';
@@ -50,6 +51,7 @@ async function getStats(): Promise<Record<ServiceCategory, { count: number; minP
 
 export default async function Servicios() {
   const stats = await getStats();
+  const c = await getContent();
 
   return (
     <section
@@ -67,7 +69,7 @@ export default async function Servicios() {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'flex-end',
+          alignItems: 'flex-start',
           marginBottom: 32,
           gap: 32,
         }}
@@ -98,11 +100,11 @@ export default async function Servicios() {
               margin: 0,
             }}
           >
-            6 formas de ordenar tu negocio.
+            {c.servicios_title}
           </h2>
         </div>
         <p style={{ fontSize: 17, color: G.oliveSoft, maxWidth: 340, lineHeight: 1.6 }}>
-          Cada línea es modular. Tomas lo que necesitas, dejas lo que no.
+          {c.servicios_subtitle}
         </p>
       </header>
 
