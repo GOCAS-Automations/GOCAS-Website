@@ -221,15 +221,18 @@ function CategoryBlock({
               [ {String(index + 1).padStart(2, '0')} · {CATEGORY_LABEL[category]} ]
             </div>
             <h2
+              lang="es"
               style={{
                 fontFamily: 'Manrope, sans-serif',
                 fontSize: 32,
                 fontWeight: 800,
                 letterSpacing: '-0.025em',
                 textTransform: 'uppercase',
-                lineHeight: 1,
+                lineHeight: 1.02,
                 color: G.olive,
                 margin: 0,
+                overflowWrap: 'break-word',
+                hyphens: 'auto',
               }}
             >
               {CATEGORY_LABEL[category]}.
