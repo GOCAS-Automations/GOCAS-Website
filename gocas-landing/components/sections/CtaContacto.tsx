@@ -29,7 +29,7 @@ export default async function CtaContacto() {
           display: 'grid',
           gridTemplateColumns: '1.2fr 1fr',
           gap: 48,
-          alignItems: 'flex-start',
+          alignItems: 'stretch',
         }}
       >
         <div>
@@ -64,7 +64,7 @@ export default async function CtaContacto() {
               el tiempo.
             </span>
           </h2>
-          <p style={{ fontSize: 17, color: G.oliveSoft, lineHeight: 1.6, maxWidth: 480, marginBottom: 28 }}>
+          <p style={{ fontSize: 18, color: G.oliveSoft, lineHeight: 1.6, maxWidth: 620, marginBottom: 28 }}>
             {content.contact_intro}
           </p>
           <ContactForm source="home" />
@@ -134,11 +134,11 @@ export default async function CtaContacto() {
           <div
             style={{
               borderTop: `1px solid ${G.ruleDark}`,
-              marginTop: 12,
-              paddingTop: 16,
-              fontSize: 14,
+              marginTop: 'auto',
+              paddingTop: 18,
+              fontSize: 15,
               color: G.oliveMute,
-              lineHeight: 1.55,
+              lineHeight: 1.6,
             }}
           >
             <div
@@ -154,6 +154,9 @@ export default async function CtaContacto() {
               [ dónde estamos ]
             </div>
             Cali · Colombia
+            <div style={{ marginTop: 14, color: G.bone, fontWeight: 700, fontSize: 15 }}>
+              Respondemos el mismo día hábil.
+            </div>
           </div>
         </aside>
       </div>

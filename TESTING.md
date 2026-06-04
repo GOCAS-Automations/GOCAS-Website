@@ -47,7 +47,7 @@ Guía rápida para probar el sitio (manual) y lista de lo que falta. Para correr
 
 **Para que el portal funcione en producción:**
 - [ ] Cargar `NEXT_PUBLIC_SUPABASE_ANON_KEY` (y demás) en Vercel.
-- [ ] Crear las cuentas de los 4 socios en Supabase → Authentication → Users.
+- [x] Cuentas de los 4 socios **creadas** (rol admin) con `scripts/create-partner-accounts.mjs`. Las credenciales están en `GOCAS_Credenciales.md` (a nivel de workspace, **fuera del repo**). Aplica la migración `0005` para fijar sus emails en `team_members`.
 
 **Mejoras del sitio:**
 - [ ] **Reseñas reales** de los clientes (hoy son texto de muestra, badge "reseña pronto").

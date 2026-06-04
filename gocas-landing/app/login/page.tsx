@@ -35,7 +35,7 @@ export default function LoginPage() {
             marginBottom: 10,
           }}
         >
-          [ portal interno ]
+          [ acceso ]
         </div>
         <h1
           style={{
@@ -65,7 +65,8 @@ export default function LoginPage() {
             letterSpacing: '0.03em',
           }}
         >
-          Acceso solo para el equipo GOCAS. ¿Sin cuenta? Pídele a un socio que te cree una.
+          Clientes y equipo GOCAS. Ingresa para ver tus proyectos y darles seguimiento.
+          ¿Aún no tienes cuenta? Escríbenos y te la creamos.
         </p>
         </div>
       </main>

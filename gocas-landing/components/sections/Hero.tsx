@@ -14,12 +14,12 @@ export default async function Hero() {
       <div
         className="gocas-hero"
         style={{
-          maxWidth: 1180,
+          maxWidth: 1240,
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: '1.4fr 1fr',
-          gap: 56,
-          alignItems: 'center',
+          gridTemplateColumns: '1.45fr 1fr',
+          gap: 88,
+          alignItems: 'stretch',
         }}
       >
       <div>
@@ -39,7 +39,7 @@ export default async function Hero() {
           {c.hero_line1}<br />{c.hero_line2}<br />{c.hero_line3}{' '}
           <HeroHighlight word={c.hero_highlight} />
         </h1>
-        <p style={{ fontSize: 19, color: G.oliveSoft, lineHeight: 1.6, marginTop: 28, maxWidth: 540 }}>
+        <p style={{ fontSize: 21, color: G.oliveSoft, lineHeight: 1.6, marginTop: 28, maxWidth: 560 }}>
           {c.hero_subtitle}
         </p>
         <div className="gocas-hero-ctas" style={{ display: 'flex', gap: 0, marginTop: 36 }}>

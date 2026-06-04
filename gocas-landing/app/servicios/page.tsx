@@ -4,6 +4,7 @@ import Nav from '@/components/sections/Nav';
 import Footer from '@/components/sections/Footer';
 import SvcIcon, { type IconName } from '@/components/SvcIcon';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { G } from '@/lib/tokens';
 import {
@@ -99,7 +100,7 @@ function PackageCard({ pkg, waNumber }: { pkg: ServicePackage; waNumber: string 
         </span>
       </header>
       {pkg.description && (
-        <p style={{ fontSize: 13, color: G.oliveSoft, lineHeight: 1.55, margin: 0 }}>{pkg.description}</p>
+        <p style={{ fontSize: 14.5, color: G.oliveSoft, lineHeight: 1.55, margin: 0 }}>{pkg.description}</p>
       )}
       {features.length > 0 && (
         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -107,9 +108,9 @@ function PackageCard({ pkg, waNumber }: { pkg: ServicePackage; waNumber: string 
             <li
               key={i}
               style={{
-                fontSize: 12.5,
+                fontSize: 13.5,
                 color: G.olive,
-                lineHeight: 1.45,
+                lineHeight: 1.5,
                 paddingLeft: 16,
                 position: 'relative',
               }}
@@ -227,7 +228,7 @@ function CategoryBlock({
             >
               {CATEGORY_LABEL[category]}.
             </h2>
-            <p style={{ fontSize: 14, color: G.oliveSoft, marginTop: 8, marginBottom: 0, maxWidth: 520, lineHeight: 1.55 }}>
+            <p style={{ fontSize: 15.5, color: G.oliveSoft, marginTop: 8, marginBottom: 0, maxWidth: 540, lineHeight: 1.55 }}>
               {CATEGORY_DESC[category]}
             </p>
           </div>
@@ -265,10 +266,10 @@ function CategoryBlock({
             padding: '18px 20px',
             background: G.sand,
             borderLeft: `3px solid ${G.amber}`,
-            fontSize: 13,
+            fontSize: 14,
             color: G.oliveSoft,
             lineHeight: 1.6,
-            maxWidth: 820,
+            maxWidth: 860,
           }}
         >
           <strong style={{ color: G.olive }}>Todos los planes incluyen soporte por WhatsApp y correo.</strong>{' '}
@@ -322,7 +323,7 @@ export default async function ServiciosPage() {
         >
           Todo lo que<br />sabemos hacer.
         </h1>
-        <p style={{ fontSize: 17, color: G.oliveSoft, lineHeight: 1.55, marginTop: 24, maxWidth: 640 }}>
+        <p style={{ fontSize: 18, color: G.oliveSoft, lineHeight: 1.6, marginTop: 24, maxWidth: 680 }}>
           Precios base de referencia en USD. Cada paquete se ajusta a tu caso real.
           Para soluciones personalizadas o desarrollo a la medida —{' '}
           <Link href="/contacto" style={{ color: G.amber, fontWeight: 700, textDecoration: 'none' }}>
@@ -417,6 +418,7 @@ export default async function ServiciosPage() {
       </div>
 
       <Footer background={G.sand} />
+      <FloatingWhatsApp />
     </main>
   );
 }

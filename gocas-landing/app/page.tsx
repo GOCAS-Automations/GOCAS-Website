@@ -7,6 +7,7 @@ import Proceso from '@/components/sections/Proceso';
 import Casos from '@/components/sections/Casos';
 import CtaContacto from '@/components/sections/CtaContacto';
 import Footer from '@/components/sections/Footer';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { G } from '@/lib/tokens';
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <Casos />
       <CtaContacto />
       <Footer background={G.sand} />
+      <FloatingWhatsApp />
     </main>
   );
 }

@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { G } from '@/lib/tokens';
 
-// Variantes de "formato" para la palabra resaltada del Hero (se rota cada 5s).
-// Se mantiene el estilo de marca (paleta oliva/ámbar/crema), solo cambia el tratamiento.
+// La palabra resaltada del Hero se escribe y se borra letra por letra, y al
+// reescribirse cambia de "formato" (color/fondo/tipografía) dentro de la marca.
 type Variant = {
   background: string;
   color: string;
@@ -21,15 +21,64 @@ const VARIANTS: Variant[] = [
   { background: G.oliveSoft, color: G.bone, fontFamily: 'Manrope, sans-serif', fontStyle: 'italic' },
 ];
 
+const TYPE_MS = 95;
+const DEL_MS = 50;
+const PAUSE_FULL_MS = 2600;
+const PAUSE_EMPTY_MS = 380;
+
 export default function HeroHighlight({ word }: { word: string }) {
-  const [i, setI] = useState(0);
+  const [text, setText] = useState(word);
+  const [vi, setVi] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setI((n) => (n + 1) % VARIANTS.length), 2600);
-    return () => clearInterval(id);
-  }, []);
+    let mounted = true;
+    let timer: ReturnType<typeof setTimeout>;
+    let i = word.length;
+    let v = 0;
+    let mode: 'pauseFull' | 'deleting' | 'typing' = 'pauseFull';
 
-  const v = VARIANTS[i];
+    const schedule = (ms: number) => {
+      timer = setTimeout(() => mounted && step(), ms);
+    };
+
+    function step() {
+      if (mode === 'pauseFull') {
+        mode = 'deleting';
+        schedule(PAUSE_FULL_MS);
+        return;
+      }
+      if (mode === 'deleting') {
+        i = Math.max(0, i - 1);
+        setText(word.slice(0, i));
+        if (i === 0) {
+          v = (v + 1) % VARIANTS.length;
+          setVi(v);
+          mode = 'typing';
+          schedule(PAUSE_EMPTY_MS);
+        } else {
+          schedule(DEL_MS);
+        }
+        return;
+      }
+      // typing
+      i = Math.min(word.length, i + 1);
+      setText(word.slice(0, i));
+      if (i === word.length) {
+        mode = 'pauseFull';
+        schedule(PAUSE_FULL_MS);
+      } else {
+        schedule(TYPE_MS);
+      }
+    }
+
+    schedule(PAUSE_FULL_MS);
+    return () => {
+      mounted = false;
+      clearTimeout(timer);
+    };
+  }, [word]);
+
+  const v = VARIANTS[vi];
 
   return (
     <span
@@ -42,10 +91,12 @@ export default function HeroHighlight({ word }: { word: string }) {
         fontFamily: v.fontFamily,
         fontStyle: v.fontStyle ?? 'normal',
         textDecoration: v.textDecoration ?? 'none',
-        transition: 'background .7s ease-in-out, color .7s ease-in-out, text-decoration-color .7s ease-in-out',
+        transition: 'background .3s ease, color .3s ease',
+        whiteSpace: 'nowrap',
       }}
     >
-      {word}
+      {text}
+      <span className="gocas-caret" style={{ color: v.color, fontWeight: 400 }}>▌</span>
     </span>
   );
 }

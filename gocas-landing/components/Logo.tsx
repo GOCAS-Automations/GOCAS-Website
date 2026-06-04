@@ -3,6 +3,8 @@ type LogoProps = {
   dark?: boolean;
   mono?: boolean;
   monogram?: boolean;
+  /** Monograma sin recuadro de fondo (solo el glifo [g]). */
+  bare?: boolean;
   withTagline?: boolean;
 };
 
@@ -18,6 +20,7 @@ export default function Logo({
   dark = false,
   mono = false,
   monogram = false,
+  bare = false,
   withTagline = true,
 }: LogoProps) {
   const ink = dark ? C.bone : C.olive;
@@ -30,14 +33,14 @@ export default function Logo({
         style={{
           width: size,
           height: size,
-          background: ink,
+          background: bare ? 'transparent' : ink,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontFamily: 'Manrope, sans-serif',
           fontWeight: 700,
           fontSize: size * 0.46,
-          color: dark ? C.olive : C.bone,
+          color: bare ? ink : dark ? C.olive : C.bone,
           letterSpacing: '-0.02em',
           lineHeight: 1,
         }}

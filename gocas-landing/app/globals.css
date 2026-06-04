@@ -7,6 +7,15 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes gocas-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.gocas-caret {
+  animation: gocas-blink 1s step-end infinite;
+  margin-left: 1px;
+}
+
 :root {
   --bg-100: #f7f1e3;
   --bg-200: #ede4d3;
@@ -37,6 +46,13 @@ html, body {
 
 /* Excepción a los bordes duros: elementos circulares (ej. ícono de WhatsApp). */
 .gocas-round { border-radius: 9999px !important; }
+
+/* Botón flotante de WhatsApp */
+.gocas-wa-fab { transition: transform .15s ease, background .15s ease; }
+.gocas-wa-fab:hover { transform: scale(1.06); }
+@media (max-width: 560px) {
+  .gocas-wa-fab { right: 16px !important; bottom: 16px !important; width: 54px !important; height: 54px !important; }
+}
 
 a { color: inherit; }
 

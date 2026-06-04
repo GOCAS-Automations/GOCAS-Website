@@ -48,17 +48,29 @@ export default function HeroTestimonial() {
   const item = items[i];
 
   return (
-    <aside style={{ background: G.olive, color: G.bone, padding: 32, position: 'relative' }}>
-      <Logo size={44} dark monogram />
+    <aside
+      style={{
+        background: G.olive,
+        color: G.bone,
+        padding: 32,
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+      }}
+    >
+      <Logo size={46} dark monogram bare />
       <div
         key={i}
         style={{
           fontFamily: 'Manrope, sans-serif',
-          fontSize: 19,
-          lineHeight: 1.4,
+          fontSize: 20,
+          lineHeight: 1.45,
           fontWeight: 500,
           marginTop: 24,
-          minHeight: 132,
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
           animation: 'gocas-fade .5s ease-out',
         }}
       >
@@ -75,10 +87,10 @@ export default function HeroTestimonial() {
         }}
       >
         <div key={`m-${i}`} style={{ animation: 'gocas-fade .5s ease-out' }}>
-          <div style={{ fontSize: 13, fontWeight: 700 }}>{item.name}</div>
+          <div style={{ fontSize: 14, fontWeight: 700 }}>{item.name}</div>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 12,
               color: G.oliveMute,
               fontFamily: '"JetBrains Mono", monospace',
             }}
@@ -86,7 +98,6 @@ export default function HeroTestimonial() {
             {item.role}
           </div>
         </div>
-        <div style={{ width: 28, height: 28, background: G.amber }} />
       </div>
       <div
         style={{

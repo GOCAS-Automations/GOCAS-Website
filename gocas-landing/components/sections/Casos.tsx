@@ -54,10 +54,10 @@ export default async function Casos() {
               margin: 0,
             }}
           >
-            Lo que<br />hemos hecho.
+            Lo que hemos hecho.
           </h2>
         </div>
-        <p style={{ fontSize: 16, color: G.oliveSoft, maxWidth: 340, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 17, color: G.oliveSoft, maxWidth: 360, lineHeight: 1.6 }}>
           Equipos reales que confiaron en nosotros. Las reseñas de cada uno son texto de muestra — las
           actualizamos con las palabras textuales del cliente próximamente.
         </p>
@@ -161,14 +161,14 @@ export default async function Casos() {
             >
               [ lo que hicimos ]
             </div>
-            <p style={{ fontSize: 15.5, color: G.olive, lineHeight: 1.6, margin: 0 }}>{c.scope}</p>
+            <p style={{ fontSize: 16, color: G.olive, lineHeight: 1.6, margin: 0 }}>{c.scope}</p>
 
             {c.quote && (
               <blockquote
                 style={{
                   fontFamily: 'Manrope, sans-serif',
                   fontStyle: 'italic',
-                  fontSize: 16,
+                  fontSize: 17,
                   lineHeight: 1.55,
                   color: G.oliveSoft,
                   margin: 0,

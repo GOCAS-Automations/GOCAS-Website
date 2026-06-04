@@ -39,7 +39,7 @@ export default function Proceso() {
           marginBottom: 36,
         }}
       >
-        Transparencia<br />en cada paso.
+        Transparencia en cada paso.
       </h2>
       <div
         className="gocas-proceso-grid"
@@ -85,7 +85,7 @@ export default function Proceso() {
             >
               {p.t}
             </div>
-            <div style={{ fontSize: 15, color: G.oliveSoft, lineHeight: 1.55 }}>{p.d}</div>
+            <div style={{ fontSize: 16, color: G.oliveSoft, lineHeight: 1.55 }}>{p.d}</div>
           </div>
         ))}
       </div>

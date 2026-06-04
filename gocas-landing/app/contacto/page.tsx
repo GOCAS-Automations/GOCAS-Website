@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Nav from '@/components/sections/Nav';
 import Footer from '@/components/sections/Footer';
 import ContactForm from '@/components/ContactForm';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { G } from '@/lib/tokens';
 
 export const dynamic = 'force-dynamic';
@@ -73,7 +74,7 @@ export default function ContactoPage() {
         >
           Hablemos.
         </h1>
-        <p style={{ fontSize: 17, color: G.oliveSoft, lineHeight: 1.55, marginTop: 24, maxWidth: 640 }}>
+        <p style={{ fontSize: 18, color: G.oliveSoft, lineHeight: 1.6, marginTop: 24, maxWidth: 680 }}>
           Cuéntanos qué te quita el tiempo, qué proceso quieres ordenar o qué quieres construir.
           Sin compromiso. La primera reunión es para entendernos, no para vender.
         </p>
@@ -225,7 +226,7 @@ export default function ContactoPage() {
             marginBottom: 36,
           }}
         >
-          Lo que<br />sueles preguntar.
+          Lo que sueles preguntar.
         </h2>
         <div style={{ borderTop: `1px solid ${G.rule}` }}>
           {faq.map((item) => (
@@ -255,13 +256,14 @@ export default function ContactoPage() {
               >
                 {item.q}
               </h3>
-              <p style={{ fontSize: 15, color: G.oliveSoft, lineHeight: 1.6, margin: 0 }}>{item.a}</p>
+              <p style={{ fontSize: 16, color: G.oliveSoft, lineHeight: 1.6, margin: 0 }}>{item.a}</p>
             </div>
           ))}
         </div>
       </section>
 
       <Footer background={G.sand} />
+      <FloatingWhatsApp />
     </main>
   );
 }
