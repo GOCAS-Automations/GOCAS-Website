@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';
 import MobileNav from '@/components/MobileNav';
+import { useLoggedIn } from '@/lib/use-auth';
 import { G } from '@/lib/tokens';
 
 type LinkDef = {
@@ -25,6 +26,7 @@ const LINKS: LinkDef[] = [
 export default function Nav() {
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const loggedIn = useLoggedIn();
   const [activeSection, setActiveSection] = useState<string>('inicio');
 
   useEffect(() => {
@@ -117,7 +119,7 @@ export default function Nav() {
       </div>
       <div className="gocas-nav-right" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
         <Link
-          href="/login"
+          href={loggedIn ? '/portal' : '/login'}
           className="gocas-nav-login"
           style={{
             border: `1.5px solid ${G.olive}`,
@@ -130,7 +132,7 @@ export default function Nav() {
             textDecoration: 'none',
           }}
         >
-          Ingresar
+          {loggedIn ? 'Mi cuenta' : 'Ingresar'}
         </Link>
         <Link
           href="/contacto"

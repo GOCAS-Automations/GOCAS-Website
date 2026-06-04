@@ -140,15 +140,32 @@ export default async function Casos() {
                   </div>
                 )}
               </header>
-              {c.image_url && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  className="gocas-thumb"
-                  src={c.image_url}
-                  alt={c.client}
-                  style={{ width: 150, height: 'auto', objectFit: 'cover', flexShrink: 0, border: `1px solid ${G.olive}` }}
-                />
-              )}
+              {c.image_url &&
+                (c.url ? (
+                  <a
+                    href={c.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Ver ${c.client}`}
+                    style={{ flexShrink: 0, display: 'block', lineHeight: 0 }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      className="gocas-thumb"
+                      src={c.image_url}
+                      alt={c.client}
+                      style={{ width: 200, height: 'auto', objectFit: 'cover', display: 'block', border: `1px solid ${G.olive}` }}
+                    />
+                  </a>
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    className="gocas-thumb"
+                    src={c.image_url}
+                    alt={c.client}
+                    style={{ width: 200, height: 'auto', objectFit: 'cover', flexShrink: 0, border: `1px solid ${G.olive}` }}
+                  />
+                ))}
             </div>
 
             <div

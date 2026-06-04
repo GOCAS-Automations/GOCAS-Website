@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { G } from '@/lib/tokens';
+import { useLoggedIn } from '@/lib/use-auth';
 import Logo from './Logo';
 
 const links = [
@@ -13,6 +14,7 @@ const links = [
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
+  const loggedIn = useLoggedIn();
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -122,7 +124,7 @@ export default function MobileNav() {
               Hablemos →
             </Link>
             <Link
-              href="/login"
+              href={loggedIn ? '/portal' : '/login'}
               onClick={() => setOpen(false)}
               style={{
                 display: 'inline-block',
@@ -136,7 +138,7 @@ export default function MobileNav() {
                 textDecoration: 'none',
               }}
             >
-              Ingresar
+              {loggedIn ? 'Mi cuenta' : 'Ingresar'}
             </Link>
           </div>
         </div>
