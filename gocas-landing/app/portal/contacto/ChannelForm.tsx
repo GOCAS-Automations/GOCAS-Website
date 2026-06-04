@@ -2,7 +2,8 @@
 
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { createChannel, updateChannel, CHANNEL_KINDS } from './actions';
+import { createChannel, updateChannel } from './actions';
+import { CHANNEL_KINDS } from './constants';
 import { input, label, btnPrimary } from '../ui';
 import { G } from '@/lib/tokens';
 

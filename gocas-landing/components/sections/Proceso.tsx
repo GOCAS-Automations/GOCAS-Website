@@ -20,7 +20,7 @@ export default async function Proceso() {
       <div
         style={{
           fontFamily: '"JetBrains Mono", monospace',
-          fontSize: 11,
+          fontSize: 13,
           color: G.amber,
           letterSpacing: '0.18em',
           textTransform: 'uppercase',

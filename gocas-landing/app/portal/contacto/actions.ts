@@ -4,10 +4,9 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { getCurrentMember } from '@/lib/team';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { CHANNEL_KINDS } from './constants';
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
-
-export const CHANNEL_KINDS = ['whatsapp', 'email', 'instagram', 'phone', 'link'] as const;
 
 const ChannelSchema = z.object({
   kind: z.enum(CHANNEL_KINDS),

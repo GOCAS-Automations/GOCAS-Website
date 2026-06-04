@@ -4,18 +4,9 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { getCurrentMember } from '@/lib/team';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { CATEGORIES } from './constants';
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
-
-export const CATEGORIES = [
-  'web_development',
-  'erp',
-  'crm',
-  'automation',
-  'ai_integration',
-  'admin_digitalization',
-  'maintenance',
-] as const;
 
 const ServiceSchema = z.object({
   name: z.string().min(2, 'El nombre es obligatorio.').max(160),

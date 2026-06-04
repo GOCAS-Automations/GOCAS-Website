@@ -33,7 +33,7 @@ export default async function Casos() {
           <div
             style={{
               fontFamily: '"JetBrains Mono", monospace',
-              fontSize: 11,
+              fontSize: 13,
               color: G.amber,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
@@ -108,46 +108,48 @@ export default async function Casos() {
               </span>
             )}
 
-            {c.image_url && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={c.image_url}
-                alt={c.client}
-                style={{ width: '100%', height: 160, objectFit: 'cover', border: `1px solid ${G.olive}` }}
-              />
-            )}
-
-            <header style={{ paddingRight: c.badge ? 110 : 0 }}>
-              <h3
-                style={{
-                  fontFamily: 'Manrope, sans-serif',
-                  fontSize: 24,
-                  fontWeight: 800,
-                  textTransform: 'uppercase',
-                  letterSpacing: '-0.02em',
-                  color: G.olive,
-                  margin: 0,
-                  lineHeight: 1.05,
-                }}
-              >
-                {c.client}
-              </h3>
-              {c.contact && (
-                <div
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, alignItems: 'flex-start' }}>
+              <header>
+                <h3
                   style={{
-                    marginTop: 6,
-                    fontFamily: '"JetBrains Mono", monospace',
-                    fontSize: 11,
-                    color: G.oliveSoft,
-                    letterSpacing: '0.06em',
+                    fontFamily: 'Manrope, sans-serif',
+                    fontSize: 24,
+                    fontWeight: 800,
                     textTransform: 'uppercase',
-                    whiteSpace: 'nowrap',
+                    letterSpacing: '-0.02em',
+                    color: G.olive,
+                    margin: 0,
+                    lineHeight: 1.05,
                   }}
                 >
-                  [ {c.contact} ]
-                </div>
+                  {c.client}
+                </h3>
+                {c.contact && (
+                  <div
+                    style={{
+                      marginTop: 6,
+                      fontFamily: '"JetBrains Mono", monospace',
+                      fontSize: 11,
+                      color: G.oliveSoft,
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    [ {c.contact} ]
+                  </div>
+                )}
+              </header>
+              {c.image_url && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  className="gocas-thumb"
+                  src={c.image_url}
+                  alt={c.client}
+                  style={{ width: 150, height: 'auto', objectFit: 'cover', flexShrink: 0, border: `1px solid ${G.olive}` }}
+                />
               )}
-            </header>
+            </div>
 
             <div
               style={{

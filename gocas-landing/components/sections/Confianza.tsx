@@ -13,13 +13,13 @@ const LOGOS = [
 ];
 
 export default function Confianza() {
-  const row = [...LOGOS, ...LOGOS]; // duplicado para un loop sin cortes
+  const row = [...LOGOS, ...LOGOS, ...LOGOS]; // 3 copias → loop sin cortes y llena el ancho
   return (
     <section
       style={{
         background: G.bone,
-        borderBottom: `1px solid ${G.olive}`,
-        padding: '28px 0 32px',
+        borderTop: `1px solid ${G.olive}`,
+        padding: '36px 0 40px',
         overflow: 'hidden',
       }}
     >
@@ -27,11 +27,11 @@ export default function Confianza() {
         style={{
           textAlign: 'center',
           fontFamily: '"JetBrains Mono", monospace',
-          fontSize: 11,
+          fontSize: 14,
           color: G.amber,
           letterSpacing: '0.18em',
           textTransform: 'uppercase',
-          marginBottom: 22,
+          marginBottom: 26,
         }}
       >
         [ confían en nosotros ]

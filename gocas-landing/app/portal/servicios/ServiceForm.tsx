@@ -2,7 +2,8 @@
 
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { createService, updateService, CATEGORIES } from './actions';
+import { createService, updateService } from './actions';
+import { CATEGORIES } from './constants';
 import { input, label, btnPrimary } from '../ui';
 import { G } from '@/lib/tokens';
 

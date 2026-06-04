@@ -47,13 +47,13 @@ export default function HeroHighlight({ words }: { words: string[] }) {
 
     function step() {
       if (mode === 'pauseFull') {
-        setCaretOn(false);
+        // Palabra completa: sin cursor durante la pausa.
         mode = 'deleting';
         schedule(PAUSE_FULL_MS);
         return;
       }
-      setCaretOn(true);
       if (mode === 'deleting') {
+        setCaretOn(true);
         i = Math.max(0, i - 1);
         setText(cur().slice(0, i));
         if (i === 0) {
@@ -70,9 +70,11 @@ export default function HeroHighlight({ words }: { words: string[] }) {
       i = Math.min(cur().length, i + 1);
       setText(cur().slice(0, i));
       if (i === cur().length) {
+        setCaretOn(false); // completa → ocultar cursor
         mode = 'pauseFull';
         schedule(PAUSE_FULL_MS);
       } else {
+        setCaretOn(true);
         schedule(TYPE_MS);
       }
     }

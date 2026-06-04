@@ -12,26 +12,31 @@
   50%, 100% { opacity: 0; }
 }
 
-/* Marquee de logos de clientes */
+/* Marquee de logos de clientes (3 copias → llena el ancho y se ve centrado) */
 .gocas-marquee { width: 100%; overflow: hidden; }
 .gocas-marquee-track {
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 80px;
   width: max-content;
-  animation: gocas-marquee 32s linear infinite;
+  animation: gocas-marquee 30s linear infinite;
 }
 .gocas-marquee-track img {
-  height: 40px;
+  height: 56px;
   width: auto;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
+  filter: grayscale(1) contrast(1.05);
+  opacity: 0.78;
+  transition: filter .25s ease, opacity .25s ease;
 }
+/* Al pasar el mouse: pausa y recupera color. */
 .gocas-marquee:hover .gocas-marquee-track { animation-play-state: paused; }
+.gocas-marquee:hover .gocas-marquee-track img { filter: none; opacity: 1; }
 @keyframes gocas-marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-33.333%); }
 }
 .gocas-caret {
   animation: gocas-blink 1s step-end infinite;
@@ -68,6 +73,9 @@ html, body {
 
 /* Excepción a los bordes duros: elementos circulares (ej. ícono de WhatsApp). */
 .gocas-round { border-radius: 9999px !important; }
+
+/* Excepción: thumbnails de casos con esquinas redondeadas. */
+.gocas-thumb { border-radius: 10px !important; }
 
 /* Botón flotante de WhatsApp */
 .gocas-wa-fab { transition: transform .15s ease, background .15s ease; }

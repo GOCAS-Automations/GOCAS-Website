@@ -19,8 +19,8 @@ export default function Home() {
       <Servicios />
       <Proceso />
       <Casos />
-      <Confianza />
       <CtaContacto />
+      <Confianza />
       <Footer background={G.sand} />
       <FloatingWhatsApp />
     </main>

@@ -44,6 +44,7 @@ export default async function PortalLayout({ children }: { children: React.React
             }}
           >
             <Link href="/portal" style={{ color: G.olive, textDecoration: 'none' }}>Panel</Link>
+            <Link href="/" style={{ color: G.amber, textDecoration: 'none' }}>Ver sitio ↗</Link>
             {isPartner && (
               <>
                 <Link href="/portal/casos" style={{ color: G.olive, textDecoration: 'none' }}>Casos</Link>
